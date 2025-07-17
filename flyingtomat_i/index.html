@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>変わりつづける</title>
+
+  <!-- iOS全画面表示 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* ローカルフォント読み込み */
+    @font-face {
+      font-family: 'ZenKakuGothic';
+      src: url('fonts/ZenKakuGothicNew-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      margin: 0;
+      background-color: rgb(87, 155, 189);
+      height: 100vh;
+      position: relative;
+      font-family: 'ZenKakuGothic', sans-serif;
+    }
+
+    .shape {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 800px;
+      height: auto;
+    }
+
+    .poem {
+      position: absolute;
+      top: 5%;
+      left: 10%;
+      line-height: 3;
+      font-size: 22px;
+      color: white;
+      text-align: left;
+    }
+
+    .poem div {
+      width: 200px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <img src="circle.gif" alt="図形" class="shape" />
+
+  <div class="poem" id="poem">
+    <div id="line1">赤い</div>
+    <div id="line2">太陽が</div>
+    <div id="line3">ある</div>
+  </div>
+
+  <script>
+    var groups = [
+      ["赤い", "丸い", "大きな", "私の", "ジューシーな"],
+      ["梅干しが", "りんごが", "夕日が", "太陽が", "トマトジュースが一滴"],
+      ["浮いている", "回っている", "売られている", "光っている", "ある", "のぼっていく"]
+    ];
+
+    var lines = [
+      document.getElementById("line1"),
+      document.getElementById("line2"),
+      document.getElementById("line3")
+    ];
+
+    var currentLine = 0;
+
+    function getRandomWord(group) {
+      return group[Math.floor(Math.random() * group.length)];
+    }
+
+    function updatePoemLine() {
+      lines[currentLine].textContent = getRandomWord(groups[currentLine]);
+      currentLine = (currentLine + 1) % 3;
+    }
+
+    setInterval(updatePoemLine, 4000);
+  </script>
+
+  <script>
+    var gif = document.querySelector('.shape');
+    setInterval(function () {
+      var currentSrc = gif.src.split('?')[0];
+      gif.src = currentSrc + '?t=' + new Date().getTime();
+    }, 5 * 60 * 1000);
+  </script>
+
+</body>
+</html>
