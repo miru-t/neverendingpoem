@@ -7,11 +7,10 @@
   <!-- iOS全画面表示 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
   <style>
-    
-  /* ローカルフォント読み込み */
+    /* ローカルフォント読み込み */
     @font-face {
       font-family: 'ZenKakuGothic';
       src: url('fonts/ZenKakuGothicNew-Regular.woff') format('woff');
@@ -19,34 +18,36 @@
       font-style: normal;
     }
 
-    body {
-      margin: 0%;
-      background-color: rgb(87, 155, 189);
+    html, body {
+      margin: 0;
+      padding: 0;
       height: 100vh;
-      position: relative;
+      width: 100vw;
+      overflow: hidden;
+      background-color: rgb(87, 155, 189);
       font-family: 'ZenKakuGothic';
       font-weight: 400;
+      display: flex;
+      justify-content: center; /* 横中央 */
+      align-items: center;     /* 縦中央 */
+      position: relative;
     }
 
     .shape {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 3000px;
+      width: 80vw;
+      max-height: 80vh;
       height: auto;
     }
 
     .poem {
       position: absolute;
-      top: 11%;
+      top: 5%;
       left: 10%;
       line-height: 3;
       font-size: 25px;
       color: white;
       text-align: left;
     }
-
 
     .poem div {
       width: 200px;
@@ -67,7 +68,7 @@
     var groups = [
       ["赤い", "丸い", "大きな", "私の", "ジューシーな", "ぴかぴかの", "つやつやの"],
       ["梅干しが", "りんごが", "夕日が", "太陽が", "トマトジュースが一滴", "にきびが", "風船が", "りんごが", "火星が"],
-      ["浮いている", "回っている", "売られている", "光っている", "ある", "のぼっていく", "おどっている",]
+      ["浮いている", "回っている", "売られている", "光っている", "ある", "のぼっていく", "おどっている"]
     ];
 
     var lines = [
@@ -97,6 +98,5 @@
       gif.src = currentSrc + '?t=' + new Date().getTime();
     }, 5 * 60 * 1000);
   </script>
-
 </body>
 </html>
