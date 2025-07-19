@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>文字のもろもろ</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;  /* 横方向中央 */
+      align-items: center;      /* 縦方向中央 */
+    }
+
+    .demo-list {
+      display: flex;
+      flex-direction: column;   /* 縦並び */
+      align-items: flex-start;    /* 各項目を右揃えに */
+      gap: 20px;                /* 行間のスペース調整 */
+    }
+
+    .demo-item {
+      font-family: sans-serif;
+      font-size: 15px;
+      text-align: right;
+    }
+
+    .demo-item a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.2s;
+    }
+
+    .demo-item a:hover {
+      color: #007acc;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-list">
+    <div class="demo-item"><a href="./berry/">berry</a></div>
+    <div class="demo-item"><a href="./cheese/">cheese</a></div>
+    <div class="demo-item"><a href="./tomat/">tomato</a></div>
+    <div class="demo-item"><a href="./choco/">choco</a></div>
+    <div class="demo-item"><a href="./carrot/">carrot</a></div>
+  </div>
+</body>
+</html>

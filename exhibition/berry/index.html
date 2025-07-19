@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>変わりつづける</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    @font-face {
+      font-family: 'ZenKakuGothic';
+      src: url('fonts/ZenKakuGothicNew-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: black;
+      font-family: 'ZenKakuGothic', sans-serif;
+    }
+
+    /* アスペクト比固定のラッパー */
+    .wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1080px;
+      height: 1440px; /* 3:4 */
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+    }
+
+    /* 画面に収まるようにスケール調整 */
+    @media (min-aspect-ratio: 3/4) {
+      .wrapper {
+        transform: translate(-50%, -50%) scale(calc(100vh / 1440));
+      }
+    }
+
+    @media (max-aspect-ratio: 3/4) {
+      .wrapper {
+        transform: translate(-50%, -50%) scale(calc(100vw / 1080));
+      }
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: -1;
+    }
+
+    .poem {
+      position: absolute;
+      top: 62%;
+      left: 9%;
+      font-size: 100%;
+      line-height: 2.5;
+      color: #000;
+    }
+
+    .poem div {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <img src="img_berry.png" class="background" alt="背景画像" />
+    <div class="poem" id="poem">
+      <div id="line1">白地に</div>
+      <div id="line2">青い</div>
+      <div id="line3">丸が</div>
+      <div id="line4">描かれている</div>
+    </div>
+  </div>
+
+  <script>
+    const groups = [
+      ["白地に","部屋に", "くもり空に","食卓に","雪原に","ただ","まんなかに","底に","そういう訳で","南極に","答案用紙に"],
+      ["青い", "冷たい","大きい","明るい","つるつるの","100gの","あなたの","失くした","ぽかんと","できたての","ブルーな"],
+      ["丸が","球が","惑星が","水滴が","シールが","クッキーが","地球が","ブルーベリーが","空が","フリスビーが","電球が","毛糸玉が"],
+      ["浮かんでいる", "描かれている","ある","転がっている","落ちていく","置かれている","戻ってきた","隠れている","見つかった"]
+    ];
+
+    const lines = [
+      document.getElementById("line1"),
+      document.getElementById("line2"),
+      document.getElementById("line3"),
+      document.getElementById("line4")
+    ];
+
+    let currentLine = 0;
+
+    function getRandomWord(group) {
+      return group[Math.floor(Math.random() * group.length)];
+    }
+
+    function updatePoemLine() {
+      lines[currentLine].textContent = getRandomWord(groups[currentLine]);
+      currentLine = (currentLine + 1) % 4;
+    }
+
+    setInterval(updatePoemLine, 4000);
+  </script>
+</body>
+</html>
