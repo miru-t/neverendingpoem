@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>carrot</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <style>
+    @font-face {
+      font-family: 'ZenKakuGothic';
+      src: url('fonts/ZenKakuGothicNew-Regular.woff') format('woff');
+      font-weight: 600;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: rgb(226, 114, 10);
+      font-family: 'ZenKakuGothic';
+      touch-action: none;
+    }
+
+    .wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1080px;
+      height: 1440px;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+    }
+
+    @media (min-aspect-ratio: 3/4) {
+      .wrapper {
+        transform: translate(-50%, -50%) scale(calc(100vh / 1440));
+      }
+    }
+
+    @media (max-aspect-ratio: 3/4) {
+      .wrapper {
+        transform: translate(-50%, -50%) scale(calc(100vw / 1080));
+      }
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: -1;
+    }
+
+    .poem-line {
+      position: absolute;
+      font-size: 85%;
+      font-weight: 600;
+      line-height: 1.8;
+      color: rgb(0, 0, 0);
+      white-space: nowrap;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <img src="img_carrot.png" class="background" alt="背景画像" />
+    <div id="line1" class="poem-line" style="top: 36.4%; left: 13%;">オレンジの</div>
+    <div id="line2" class="poem-line" style="top: 36.4%; left: 19.3%;">画面</div>
+  </div>
+
+  <script>
+    const groups = [
+      ["乾ききった","とめどない","ごつごつの","なだらかな","いっぱいの","灼けついた","甘酸っぱい","見渡す限り","白熱灯に、","燃え尽きた","汗っかきの","まぶたの裏","熱のこもる","炭火焼きの","いくら丼は","フラミンゴ","かさかさの","きつね色の","オーブンに","波打ち際に","真夏日だし","東風吹かば","熱波来たり","サンバ踊る","ヤンニョム","からっから","オレンジの","煮えたぎる"],
+      ["砂漠","溶岩","柑橘","夕焼","背中","陳皮","南瓜","ウニ","ビワ","荒野","果汁","鬼灯","紅鮭","紅葉","珊瑚","炬燵","火山","干柿","山脈","黄身","麦畑","人参","爪切"],
+    ];
+
+    const lines = [
+      document.getElementById("line1"),
+      document.getElementById("line2"),
+    ];
+
+    let currentLine = 0;
+
+    function getRandomWord(group) {
+      return group[Math.floor(Math.random() * group.length)];
+    }
+
+    function updatePoemLine() {
+      lines[currentLine].textContent = getRandomWord(groups[currentLine]);
+      currentLine = (currentLine + 1) % 2;
+    }
+
+    setInterval(updatePoemLine, 4000);
+  </script>
+</body>
+</html>

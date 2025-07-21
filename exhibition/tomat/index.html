@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+
+  <title>berry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+      <!-- iOS全画面表示 -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  <style>
+    @font-face {
+      font-family: 'ZenKakuGothic';
+      src: url('fonts/ZenKakuGothicNew-Regular.woff') format('woff');
+      font-weight: 600;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: #6cb6ca;
+      font-family: 'ZenKakuGothic'
+    }
+
+    /* アスペクト比固定のラッパー */
+    .wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1080px;
+      height: 1440px; /* 3:4 */
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+    }
+
+    /* 画面に収まるようにスケール調整 */
+    @media (min-aspect-ratio: 3/4) {
+      .wrapper {
+        transform: translate(-50%, -50%) scale(calc(100vh / 1440));
+      }
+    }
+
+    @media (max-aspect-ratio: 3/4) {
+      .wrapper {
+        transform: translate(-50%, -50%) scale(calc(100vw / 1080));
+      }
+    }
+
+    .background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: -1;
+    }
+
+    .poem {
+      position: absolute;
+      top: 44%;
+      left: 9%;
+      font-size: 130%;
+      font-weight: 600;
+      line-height: 2.5;
+      color: #ffffff;
+    }
+
+    .poem div {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <img src="img_tomat.png" class="background" alt="背景画像" />
+    <div class="poem" id="poem">
+      <div id="line1">赤い</div>
+      <div id="line2">丸が</div>
+      <div id="line3">浮いている</div>
+    </div>
+  </div>
+
+  <script>
+    const groups = [
+      ["大きな","私の","ジューシーな","つやつやの","燃ゆる","激辛の","あつあつの","バカンス！","昼間から","プールサイド"],
+      ["梅干しが","りんごが","夕日が","太陽が","トマトジュースが","にきびが","火星が","水泳帽が","タコの頭が","心臓が"],
+      ["浮かんでる","回ってる","売られている","光っている","のぼっていく","おどっている","向かってくる","天日干し中","冷やされている","転がっている"]
+    ];
+
+    const lines = [
+      document.getElementById("line1"),
+      document.getElementById("line2"),
+      document.getElementById("line3"),
+      document.getElementById("line4")
+    ];
+
+    let currentLine = 0;
+
+    function getRandomWord(group) {
+      return group[Math.floor(Math.random() * group.length)];
+    }
+
+    function updatePoemLine() {
+      lines[currentLine].textContent = getRandomWord(groups[currentLine]);
+      currentLine = (currentLine + 1) % 3;
+    }
+
+    setInterval(updatePoemLine, 4000);
+  </script>
+</body>
+</html>
