@@ -2,12 +2,10 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>tomat</title>
-
-  <!-- iOS全画面表示設定 -->
+  <title>berry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <style>
     @font-face {
@@ -31,7 +29,7 @@
       top: 50%;
       left: 50%;
       width: 1080px;
-      height: 1440px; /* 3:4 */
+      height: 1440px;
       transform: translate(-50%, -50%) scale(1);
       transform-origin: center center;
     }
@@ -71,10 +69,9 @@
     }
   </style>
 </head>
-
 <body>
   <div class="wrapper">
-    <img src="img_tomat.png" class="background" alt="背景画像" />
+    <img src="img_tomat.jpg" class="background" alt="背景画像" />
     <div class="poem" id="poem">
       <div id="line1">赤い</div>
       <div id="line2">丸が</div>
@@ -83,30 +80,31 @@
   </div>
 
   <script>
+    var groups = [
+      ["大きな","私の","ジューシーな","つやつやの","燃ゆる","激辛の","あつあつの","バカンス！","昼間から","プールサイド"],
+      ["梅干しが","りんごが","夕日が","太陽が","トマトジュースが","にきびが","火星が","水泳帽が","タコの頭が","心臓が"],
+      ["浮かんでる","回ってる","売られている","光っている","のぼっていく","おどっている","向かってくる","天日干し中","冷やされている","転がっている"]
+    ];
+
+    var lines = [
+      document.getElementById("line1"),
+      document.getElementById("line2"),
+      document.getElementById("line3"),
+    ];
+
+    var currentLine = 0;
+
+    function getRandomWord(group) {
+      var index = Math.floor(Math.random() * group.length);
+      return group[index];
+    }
+
+    function updatePoemLine() {
+      lines[currentLine].textContent = getRandomWord(groups[currentLine]);
+      currentLine = (currentLine + 1) % 3;
+    }
+
     window.onload = function () {
-      const groups = [
-        ["大きな", "私の", "ジューシーな", "つやつやの", "燃ゆる", "激辛の", "あつあつの", "バカンス！", "昼間から", "プールサイド"],
-        ["梅干しが", "りんごが", "夕日が", "太陽が", "トマトジュースが", "にきびが", "火星が", "水泳帽が", "タコの頭が", "心臓が"],
-        ["浮かんでる", "回ってる", "売られている", "光っている", "のぼっていく", "おどっている", "向かってくる", "天日干し中", "冷やされている", "転がっている"]
-      ];
-
-      const lines = [
-        document.getElementById("line1"),
-        document.getElementById("line2"),
-        document.getElementById("line3")
-      ];
-
-      let currentLine = 0;
-
-      function getRandomWord(group) {
-        return group[Math.floor(Math.random() * group.length)];
-      }
-
-      function updatePoemLine() {
-        lines[currentLine].textContent = getRandomWord(groups[currentLine]);
-        currentLine = (currentLine + 1) % 3;
-      }
-
       setInterval(updatePoemLine, 4000);
     };
   </script>
