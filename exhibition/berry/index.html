@@ -2,14 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-
   <title>berry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-      <!-- iOS全画面表示 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  
+
   <style>
     @font-face {
       font-family: 'ZenKakuGothic';
@@ -24,21 +21,19 @@
       width: 100vw;
       overflow: hidden;
       background: white;
-      font-family: 'ZenKakuGothic'
+      font-family: 'ZenKakuGothic';
     }
 
-    /* アスペクト比固定のラッパー */
     .wrapper {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 1080px;
-      height: 1440px; /* 3:4 */
+      height: 1440px;
       transform: translate(-50%, -50%) scale(1);
       transform-origin: center center;
     }
 
-    /* 画面に収まるようにスケール調整 */
     @media (min-aspect-ratio: 3/4) {
       .wrapper {
         transform: translate(-50%, -50%) scale(calc(100vh / 1440));
@@ -86,24 +81,25 @@
   </div>
 
   <script>
-    const groups = [
+    var groups = [
       ["白地に","部屋に", "くもり空に","食卓に","雪原に","ただ","まんなかに","底に","そういう訳で","南極に","答案用紙に"],
       ["青い", "冷たい","大きい","明るい","つるつるの","100gの","あなたの","失くした","ぽかんと","できたての","ブルーな"],
       ["丸が","球が","惑星が","水滴が","シールが","クッキーが","地球が","ブルーベリーが","空が","フリスビーが","電球が","毛糸玉が"],
       ["浮かんでいる", "描かれている","ある","転がっている","落ちていく","置かれている","戻ってきた","隠れている","見つかった"]
     ];
 
-    const lines = [
+    var lines = [
       document.getElementById("line1"),
       document.getElementById("line2"),
       document.getElementById("line3"),
       document.getElementById("line4")
     ];
 
-    let currentLine = 0;
+    var currentLine = 0;
 
     function getRandomWord(group) {
-      return group[Math.floor(Math.random() * group.length)];
+      var index = Math.floor(Math.random() * group.length);
+      return group[index];
     }
 
     function updatePoemLine() {
@@ -111,7 +107,9 @@
       currentLine = (currentLine + 1) % 4;
     }
 
-    setInterval(updatePoemLine, 4000);
+    window.onload = function () {
+      setInterval(updatePoemLine, 4000);
+    };
   </script>
 </body>
 </html>
