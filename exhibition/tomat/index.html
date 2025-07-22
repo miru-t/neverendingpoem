@@ -2,10 +2,12 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>berry</title>
+  <title>tomat</title>
+
+  <!-- iOS全画面表示設定 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <style>
     @font-face {
@@ -69,6 +71,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="wrapper">
     <img src="img_tomat.png" class="background" alt="背景画像" />
@@ -80,7 +83,7 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
+    window.onload = function () {
       const groups = [
         ["大きな", "私の", "ジューシーな", "つやつやの", "燃ゆる", "激辛の", "あつあつの", "バカンス！", "昼間から", "プールサイド"],
         ["梅干しが", "りんごが", "夕日が", "太陽が", "トマトジュースが", "にきびが", "火星が", "水泳帽が", "タコの頭が", "心臓が"],
@@ -105,7 +108,7 @@
       }
 
       setInterval(updatePoemLine, 4000);
-    });
+    };
   </script>
 </body>
 </html>
